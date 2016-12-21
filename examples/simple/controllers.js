@@ -13,22 +13,11 @@ angular
         });
 
         // FILTERS
-      
-        // a sync filter
+
         uploader.filters.push({
-            name: 'syncFilter',
+            name: 'customFilter',
             fn: function(item /*{File|FileLikeObject}*/, options) {
-                console.log('syncFilter');
                 return this.queue.length < 10;
-            }
-        });
-      
-        // an async filter
-        uploader.filters.push({
-            name: 'asyncFilter',
-            fn: function(item /*{File|FileLikeObject}*/, options, deferred) {
-                console.log('asyncFilter');
-                setTimeout(deferred.resolve, 1e3);
             }
         });
 
@@ -53,6 +42,7 @@ angular
             console.info('onProgressAll', progress);
         };
         uploader.onSuccessItem = function(fileItem, response, status, headers) {
+            
             console.info('onSuccessItem', fileItem, response, status, headers);
         };
         uploader.onErrorItem = function(fileItem, response, status, headers) {
